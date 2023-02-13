@@ -31,7 +31,20 @@
   height: 48px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
+
+.todo__task-delete {
+  text-decoration: none;
+  padding: 6px 4px;
+  font-weight: 700;
+  color: #bb1c1c;
+  background-color: rgba(223, 37, 37, 0.377);
+  border-radius: 5px;
+  border: 1px crimson;
+  cursor: pointer;
+}
+
 .todo__text {
   border: none;
 }
@@ -39,7 +52,7 @@
 .todo__error-message {
   display: none;
   text-align: center;
-  background-color: rgba(214, 49, 49, 0.445);
+  background-color: rgba(182, 59, 59, 0.329);
   color: #bb1c1c;
   padding: 16px;
   border-radius: 6px;

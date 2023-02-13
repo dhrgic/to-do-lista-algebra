@@ -37,6 +37,7 @@ inputEl.addEventListener("keydown", (event) => {
       errorMessage.style.display = "none";
     } else {
       errorMessage.style.display = "block";
+      inputEl.value = "";
     }
   }
 });
@@ -46,9 +47,24 @@ function renderToDoTasks(taskArray) {
   taskArray.forEach((zadatak, index) => {
     const taskEl = document.createElement("div");
     taskEl.className = "todo__task";
-    taskEl.innerText = `${index + 1}. ${zadatak}`;
-    // index + 1 + ". " + zadatak;
     todoTasksContainer.appendChild(taskEl);
+
+    const paragraph = document.createElement("p");
+    paragraph.innerText = `${index + 1}. ${zadatak}`;
+    taskEl.appendChild(paragraph);
+    // index + 1 + ". " + zadatak;
+
+    const btnDelete = document.createElement("a");
+    btnDelete.innerHTML = "Delete";
+    btnDelete.className = "todo__task-delete";
+    taskEl.appendChild(btnDelete);
+
+    btnDelete.addEventListener("click", () => {
+      //   let currentText = event.target.previousSibling.innerText;
+      //   currentText = currentText.substring(currentText.indexOf(""));
+      taskArray.splice(taskArray.indexOf(zadatak), 1);
+      renderToDoTasks(taskArray);
+    });
   });
 }
 
