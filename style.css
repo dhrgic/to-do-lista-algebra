@@ -35,3 +35,13 @@
 .todo__text {
   border: none;
 }
+
+.todo__error-message {
+  display: none;
+  text-align: center;
+  background-color: rgba(214, 49, 49, 0.445);
+  color: #bb1c1c;
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
