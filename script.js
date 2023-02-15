@@ -2,7 +2,12 @@ const inputEl = document.querySelector("#taskInput");
 const todoTasksContainer = document.querySelector(".todo__tasks");
 const todoTasksEl = document.querySelectorAll(".todo__task");
 const errorMessage = document.querySelector(".todo__error-message");
-const taskArray = [];
+const taskArray =
+  localStorage.getItem("taskArray") === null
+    ? []
+    : JSON.parse(localStorage.getItem("taskArray"));
+
+renderToDoTasks(taskArray);
 
 inputEl.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
@@ -34,6 +39,7 @@ inputEl.addEventListener("keydown", (event) => {
       // todoElContainer.appendChild(buttonEdit);
       inputEl.value = "";
       renderToDoTasks(taskArray);
+      localStorage.setItem("taskArray", JSON.stringify(taskArray));
       errorMessage.style.display = "none";
     } else {
       errorMessage.style.display = "block";
@@ -63,6 +69,7 @@ function renderToDoTasks(taskArray) {
       //   let currentText = event.target.previousSibling.innerText;
       //   currentText = currentText.substring(currentText.indexOf(""));
       taskArray.splice(taskArray.indexOf(zadatak), 1);
+      localStorage.setItem("taskArray", JSON.stringify(taskArray));
       renderToDoTasks(taskArray);
     });
   });
