@@ -1,82 +1,129 @@
-const inputEl = document.querySelector("#taskInput");
-const todoTasksContainer = document.querySelector(".todo__tasks");
-const todoTasksEl = document.querySelectorAll(".todo__task");
-const errorMessage = document.querySelector(".todo__error-message");
-const taskArray =
-  localStorage.getItem("taskArray") === null
-    ? []
-    : JSON.parse(localStorage.getItem("taskArray"));
+// const inputEl = document.querySelector("#taskInput");
+// const todoTasksContainer = document.querySelector(".todo__tasks");
+// const todoTasksEl = document.querySelectorAll(".todo__task");
+// const errorMessage = document.querySelector(".todo__error-message");
+// const taskArray =
+//   localStorage.getItem("taskArray") === null
+//     ? []
+//     : JSON.parse(localStorage.getItem("taskArray"));
 
-renderToDoTasks(taskArray);
+// renderToDoTasks(taskArray);
 
-inputEl.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    const task = inputEl.value;
+// inputEl.addEventListener("keydown", (event) => {
+//   if (event.key === "Enter") {
+//     event.preventDefault();
+//     const task = inputEl.value;
 
-    const elementExists = taskArray.indexOf(task) === -1;
+//     const elementExists = taskArray.indexOf(task) === -1;
 
-    if (elementExists) {
-      taskArray.push(task);
-      // console.log(taskArray);
+//     if (elementExists) {
+//       taskArray.push(task);
+//       // console.log(taskArray);
 
-      // const todoElContainer = document.createElement("div");
-      // todoElContainer.classList.add("todo__task");
-      // todoTasksContainer.appendChild(todoElContainer);
+//       // const todoElContainer = document.createElement("div");
+//       // todoElContainer.classList.add("todo__task");
+//       // todoTasksContainer.appendChild(todoElContainer);
 
-      // const todoTaskText = document.createElement("input");
-      // todoTaskText.classList.add("todo__text");
-      // todoTaskText.type = "type";
-      // todoTaskText.value = taskArray.length + ". " + task;
-      // todoTaskText.setAttribute("readonly", "readonly");
-      // todoElContainer.appendChild(todoTaskText);
+//       // const todoTaskText = document.createElement("input");
+//       // todoTaskText.classList.add("todo__text");
+//       // todoTaskText.type = "type";
+//       // todoTaskText.value = taskArray.length + ". " + task;
+//       // todoTaskText.setAttribute("readonly", "readonly");
+//       // todoElContainer.appendChild(todoTaskText);
 
-      // const buttonEdit = document.createElement("button");
+//       // const buttonEdit = document.createElement("button");
 
-      // const buttonDelete = document.createElement("button");
-      // buttonEdit.classList.add("todo__button-edit");
-      // buttonEdit.innerHTML = `<img src="./images/delete_icon.svg" />`;
-      // todoElContainer.appendChild(buttonEdit);
-      inputEl.value = "";
-      renderToDoTasks(taskArray);
-      localStorage.setItem("taskArray", JSON.stringify(taskArray));
-      errorMessage.style.display = "none";
-    } else {
-      errorMessage.style.display = "block";
-      inputEl.value = "";
-    }
-  }
-});
+//       // const buttonDelete = document.createElement("button");
+//       // buttonEdit.classList.add("todo__button-edit");
+//       // buttonEdit.innerHTML = `<img src="./images/delete_icon.svg" />`;
+//       // todoElContainer.appendChild(buttonEdit);
+//       inputEl.value = "";
+//       renderToDoTasks(taskArray);
+//       localStorage.setItem("taskArray", JSON.stringify(taskArray));
+//       errorMessage.style.display = "none";
+//     } else {
+//       errorMessage.style.display = "block";
+//       inputEl.value = "";
+//     }
+//   }
+// });
 
-function renderToDoTasks(taskArray) {
-  todoTasksContainer.innerHTML = "";
-  taskArray.forEach((zadatak, index) => {
-    const taskEl = document.createElement("div");
-    taskEl.className = "todo__task";
-    todoTasksContainer.appendChild(taskEl);
+// function renderToDoTasks(taskArray) {
+//   todoTasksContainer.innerHTML = "";
+//   taskArray.forEach((zadatak, index) => {
+//     const taskEl = document.createElement("div");
+//     taskEl.className = "todo__task";
+//     todoTasksContainer.appendChild(taskEl);
 
-    const paragraph = document.createElement("p");
-    paragraph.innerText = `${index + 1}. ${zadatak}`;
-    taskEl.appendChild(paragraph);
-    // index + 1 + ". " + zadatak;
+//     const paragraph = document.createElement("p");
+//     paragraph.innerText = `${index + 1}. ${zadatak}`;
+//     taskEl.appendChild(paragraph);
+//     // index + 1 + ". " + zadatak;
 
-    const btnDelete = document.createElement("a");
-    btnDelete.innerHTML = "Delete";
-    btnDelete.className = "todo__task-delete";
-    taskEl.appendChild(btnDelete);
+//     const btnDelete = document.createElement("a");
+//     btnDelete.innerHTML = "Delete";
+//     btnDelete.className = "todo__task-delete";
+//     taskEl.appendChild(btnDelete);
 
-    btnDelete.addEventListener("click", () => {
-      //   let currentText = event.target.previousSibling.innerText;
-      //   currentText = currentText.substring(currentText.indexOf(""));
-      taskArray.splice(taskArray.indexOf(zadatak), 1);
-      localStorage.setItem("taskArray", JSON.stringify(taskArray));
-      renderToDoTasks(taskArray);
-    });
-  });
+//     btnDelete.addEventListener("click", () => {
+//       //   let currentText = event.target.previousSibling.innerText;
+//       //   currentText = currentText.substring(currentText.indexOf(""));
+//       taskArray.splice(taskArray.indexOf(zadatak), 1);
+//       localStorage.setItem("taskArray", JSON.stringify(taskArray));
+//       renderToDoTasks(taskArray);
+//     });
+//   });
+// }
+
+// // todoTasksEl.forEach((todoTaskEl) =>
+// //   todoTaskEl.addEventListener("click", (event) => {
+// //     console.log(event.target);
+// //   })
+// // );
+
+// const vehicle = {
+//   brand: "ford",
+//   model: "mustang",
+//   color: "red",
+//   getSummary: function () {
+//     return `Im a ${this.color} ${this.brand} ${this.model}`;
+//   },
+// };
+
+// const vehicle2 = {
+//   brand: "ford",
+//   model: "mustang",
+//   color: "yellow",
+//   getSummary: function () {
+//     return `Im a ${this.color} ${this.brand} ${this.model}`;
+//   },
+// };
+
+// console.log(vehicle);
+// console.log(vehicle2);
+// console.log(vehicle.getSummary());
+// console.log(vehicle2.getSummary());
+
+/*Konstruktori*/
+
+function Vehicle(brand, model, color) {
+  this.brand = brand;
+  this.model = model;
+  this.color = color;
+  this.getSummary = function () {
+    return `Im a ${this.brand} ${this.model} ${this.color}`;
+  };
 }
 
-// todoTasksEl.forEach((todoTaskEl) =>
-//   todoTaskEl.addEventListener("click", (event) => {
-//     console.log(event.target);
-//   })
-// );
+const ferrari = new Vehicle("Ferrari", "Testarosa", "Red");
+const ford = new Vehicle("Ford", "Mustang", "Red");
+const lambo = new Vehicle("Lamborghini", "Murcielago", "Red");
+
+console.log(ferrari);
+console.log(ford);
+console.log(lambo);
+console.log(lambo.getSummary());
+console.log(ford.getSummary());
+console.log(ferrari.getSummary());
+
+/*Klasa*/
