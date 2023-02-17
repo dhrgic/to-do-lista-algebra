@@ -36,33 +36,92 @@
 //   }
 // });
 
-const buildSomething = function (buildingBlock, estimation, callback) {
-  console.log(buildingBlock + " build started ...");
+// const buildSomething = function (buildingBlock, estimation, callback) {
+//   console.log(buildingBlock + " build started ...");
+//   setTimeout(function () {
+//     if (true) {
+//       callback(buildingBlock, "ready");
+//     } else {
+//       callback(buildingBlock, "not ready");
+//     }
+//   }, estimation);
+// };
+
+// buildSomething("Foundation", 1000, function (buildingBlock, status) {
+//   let buildingBlocks = buildingBlock;
+//   console.log(`${buildingBlocks} are ${status}`);
+
+//   if (status === "ready") {
+//     buildSomething("Walls", 2000, function (buildingBlock, status) {
+//       buildingBlocks += `, ${buildingBlock}`;
+//       console.log(`${buildingBlocks} are ${status}`);
+
+//       if (status === "ready") {
+//         buildSomething("Roof", 3000, function (buildingBlock, status) {
+//           buildingBlocks += `, ${buildingBlock}`;
+//           console.log(`${buildingBlocks} are ${status}`);
+//           console.log("House is built.");
+//         });
+//       }
+//     });
+//   }
+// });
+
+/*promises*/
+
+// const buildSomething = function (housePart, estimate) {
+//   console.log(housePart + " building started...");
+
+//   return new Promise((resolve, reject) => {
+//     setTimeout(function () {
+//       if (true) {
+//         resolve("ready");
+//       } else {
+//         reject("Unexpected error found, building can not be continued!");
+//       }
+//     }, estimate);
+//   });
+// };
+
+// buildSomething("Foundations", 1000)
+//   .then((status) => {
+//     console.log(`Foundations are ${status}`);
+//     return buildSomething("Walls", 1000);
+//   })
+//   .then((status) => {
+//     console.log(`Walls are ${status}`);
+//     return buildSomething("Roof", 2000);
+//   })
+//   .then((status) => {
+//     console.log(`Roof is ${status}`);
+//     return console.log("House is built!");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   })
+//   .finally(() => {
+//     console.log("Ovo će biti neovisno o svemu");
+//   });
+
+// Promise 1
+const promise1 = new Promise((resolve, reject) => {
   setTimeout(function () {
-    if (true) {
-      callback(buildingBlock, "ready");
-    } else {
-      callback(buildingBlock, "not ready");
-    }
-  }, estimation);
-};
-
-buildSomething("Foundation", 1000, function (buildingBlock, status) {
-  let buildingBlocks = buildingBlock;
-  console.log(`${buildingBlocks} are ${status}`);
-
-  if (status === "ready") {
-    buildSomething("Walls", 2000, function (buildingBlock, status) {
-      buildingBlocks += `, ${buildingBlock}`;
-      console.log(`${buildingBlocks} are ${status}`);
-
-      if (status === "ready") {
-        buildSomething("Roof", 3000, function (buildingBlock, status) {
-          buildingBlocks += `, ${buildingBlock}`;
-          console.log(`${buildingBlocks} are ${status}`);
-          console.log("House is built.");
-        });
-      }
-    });
-  }
+    resolve("Promise 1 resolved.");
+  }, 2000);
 });
+
+// Promise 2
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(function () {
+    resolve("Promise 2 resolved.");
+  }, 5000);
+});
+
+// Handling of promisees one after another
+// promise2.then(result => console.log(result));
+
+// Handling of promise 1 and 2 in paralell
+Promise.all([promise1, promise2])
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err))
+  .finally(() => console.log("Always executed"));
