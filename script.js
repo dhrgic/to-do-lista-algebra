@@ -35,3 +35,34 @@
 //     console.log("Zbroj je veći od 10");
 //   }
 // });
+
+const buildSomething = function (buildingBlock, estimation, callback) {
+  console.log(buildingBlock + " build started ...");
+  setTimeout(function () {
+    if (true) {
+      callback(buildingBlock, "ready");
+    } else {
+      callback(buildingBlock, "not ready");
+    }
+  }, estimation);
+};
+
+buildSomething("Foundation", 1000, function (buildingBlock, status) {
+  let buildingBlocks = buildingBlock;
+  console.log(`${buildingBlocks} are ${status}`);
+
+  if (status === "ready") {
+    buildSomething("Walls", 2000, function (buildingBlock, status) {
+      buildingBlocks += `, ${buildingBlock}`;
+      console.log(`${buildingBlocks} are ${status}`);
+
+      if (status === "ready") {
+        buildSomething("Roof", 3000, function (buildingBlock, status) {
+          buildingBlocks += `, ${buildingBlock}`;
+          console.log(`${buildingBlocks} are ${status}`);
+          console.log("House is built.");
+        });
+      }
+    });
+  }
+});
