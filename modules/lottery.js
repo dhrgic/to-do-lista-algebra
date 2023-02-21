@@ -41,12 +41,25 @@ export default class Lottery {
     this.generatePlayers();
     this.getWinningCombination();
 
-    const winners = this.players.filter((player) =>
-      player.lotteryNumbers.every(
-        (val, index) => val === this.winningCombination[index]
-      )
-    );
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const winners = this.players.filter((player) =>
+          player.lotteryNumbers.every(
+            (val, index) => val === this.winningCombination[index]
+          )
+        );
 
-    console.log(winners);
+        const result = {
+          winningCombination: this.winningCombination,
+          winners,
+        };
+
+        if (winners.length > 0) {
+          resolve(result);
+        } else {
+          reject(result);
+        }
+      }, 2000);
+    });
   }
 }
