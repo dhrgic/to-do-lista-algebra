@@ -20,9 +20,15 @@ buttonStartLotteryEl.addEventListener("click", function () {
       winningCombinationEl.innerText = `Winning combination is: ${result.winningCombination}`;
       winningMessageEl.innerText = `Winners:`;
 
-      let winnersList = ``;
-      result.winners.forEach((winner) => `<li>${winner.getPlayerDetails()}`);
+      let winnersList = [];
+      result.winners.forEach((winner) => {
+        if (!winnersList.includes(winner)) {
+          winnersList.push(`<li>${winner.getPlayerDetails()}</li>`);
+        }
+      });
+      console.log(winnersList);
       winnersEl.innerHTML = winnersList;
+      winnersList = [];
     })
     .catch((result) => {
       winnersEl.display = "none";
@@ -33,4 +39,6 @@ buttonStartLotteryEl.addEventListener("click", function () {
       buttonStartLotteryEl.disabled = false;
       buttonStartLotteryEl.innerText = "Start lottery drawing";
     });
+
+  winnersEl.innerHTML = "";
 });

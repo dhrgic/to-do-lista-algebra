@@ -28,7 +28,6 @@ export default class Lottery {
         person.surname,
         this.getLotteryNumbers()
       );
-
       this.players.push(player);
     });
   }
@@ -61,5 +60,6 @@ export default class Lottery {
         }
       }, 2000);
     });
+    this.players = [];
   }
 }
