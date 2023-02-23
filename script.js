@@ -7,12 +7,10 @@ const winningCombinationEl = document.querySelector(".winning-combination");
 const winningMessageEl = document.querySelector(".winners-message");
 const winnersEl = document.querySelector(".winners");
 
-const lottery = new Lottery(politicians);
-
 buttonStartLotteryEl.addEventListener("click", function () {
   buttonStartLotteryEl.disabled = true;
   buttonStartLotteryEl.innerText = "Lottery drawing in progress";
-
+  const lottery = new Lottery(politicians);
   lottery
     .startDrawing()
     .then((result) => {
@@ -28,7 +26,6 @@ buttonStartLotteryEl.addEventListener("click", function () {
       });
       console.log(winnersList);
       winnersEl.innerHTML = winnersList;
-      winnersList = [];
     })
     .catch((result) => {
       winnersEl.display = "none";
